@@ -18,7 +18,7 @@ const defaults: Answers = {
   belly: "d",
   proportion: "a",
   face: "c",
-  posture: "b",
+  posture: "c",
   skin: "c",
 };
 

@@ -52,10 +52,10 @@ export const appearanceGroups = [
     title: "6. 体态",
     options: [
       { value: "a", label: "A. 请去体态康复中心看看", shrink: 8 },
-      { value: "a", label: "B. 有一些些常见体态问题", shrink: 3 },
-      { value: "b", label: "C. 总体来说很正常", shrink: -1 },
-      { value: "c", label: "D. 挺拔有气质", shrink: -2 },
-      { value: "d", label: "E. 男模", shrink: -3 },
+      { value: "b", label: "B. 有一些些常见体态问题", shrink: 3 },
+      { value: "c", label: "C. 总体来说很正常", shrink: -1 },
+      { value: "d", label: "D. 挺拔有气质", shrink: -2 },
+      { value: "e", label: "E. 男模", shrink: -3 },
     ],
   },
   {
