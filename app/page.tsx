@@ -19,7 +19,7 @@ const defaults: Answers = {
   hair: "c",
   belly: "d",
   proportion: "a",
-  face: "c",
+  face: "d",
   posture: "c",
   skin: "c",
 };
