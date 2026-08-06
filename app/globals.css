@@ -36,6 +36,8 @@ h1 em:after { content:""; position:absolute; left:2px; right:-12px; height:9px; 
 .sectionNo { color:var(--orange); margin:0 0 13px; }
 h2 { font-size:34px; letter-spacing:-.04em; margin:0 0 10px; }
 .helper { color:var(--muted); margin:0 0 32px; line-height:1.6; }
+.pageTagline { margin:18px 0 8px; padding:12px 14px; background:var(--acid); border-left:4px solid var(--ink); font-size:14px; font-weight:800; }
+.fieldNote { margin:-3px 0 12px; color:var(--muted); font-size:12px; line-height:1.6; }
 .numberGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:38px 0 58px; }
 .numberGrid.two { grid-template-columns:repeat(2,1fr); margin-bottom:20px; }
 .numberField { border:1px solid #ccc6b9; padding:16px; background:#fff; }
@@ -80,7 +82,7 @@ legend { font-size:13px; font-weight:800; margin-bottom:10px; }
 .scoreRing span { color:var(--muted); }
 .resultCopy { color:var(--muted); max-width:450px; margin:0 auto 25px; }
 .resultImage { display:block; width:180px; height:180px; object-fit:cover; margin:0 auto 24px; border:1px solid #d7d1c5; }
-.equation { display:flex; justify-content:center; align-items:center; gap:8px; margin:24px 0 16px; }
+.equation { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; margin:24px 0 16px; }
 .equation div { min-width:70px; border:1px solid #d7d1c5; padding:9px 7px; display:flex; flex-direction:column; gap:4px; }
 .equation div span { color:var(--muted); font-size:10px; }
 .equation div b { font-size:20px; }
@@ -88,6 +90,7 @@ legend { font-size:13px; font-weight:800; margin-bottom:10px; }
 .equation>i { font-style:normal; color:var(--muted); }
 .finalShrink { padding:14px; margin-bottom:18px; background:#f2eee4; font-size:13px; }
 .finalShrink strong { color:var(--orange); font-size:18px; margin:0 4px; }
+.stingyVerdict { margin-top:-4px; font-weight:800; }
 .breakdown { border-top:1px solid #ddd7ca; padding-top:18px; display:grid; gap:11px; }
 .breakdown>div { display:grid; grid-template-columns:78px 1fr 36px; align-items:center; gap:12px; font-size:12px; text-align:left; }
 .breakdown i { height:8px; background:#e3ded2; }
