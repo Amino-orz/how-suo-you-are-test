@@ -11,6 +11,8 @@ import {
   type CheckOption,
 } from "./scoring";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 type Answers = Record<string, string>;
 
 const defaults: Answers = {
@@ -59,7 +61,7 @@ export default function Home() {
 
   const result = useMemo(() => {
     const bmi = bmiShrink(height, weight);
-    const appearanceRows = appearanceGroups.map((group) => {
+    const appearanceRows: Array<{ label: string; value: number }> = appearanceGroups.map((group) => {
       const option = group.options.find((item) => item.value === answers[group.key]);
       return { label: group.title.replace(/^\d+\.\s*/, ""), value: option?.shrink ?? 0 };
     });
@@ -127,7 +129,7 @@ export default function Home() {
           {step === 4 && <div className="panel result">
             <p className="sectionNo">综合吸引力</p><div className="scoreRing" style={{ "--score": `${result.score * 3.6}deg` } as React.CSSProperties}><div><strong>{result.score}</strong><span>/100</span></div></div>
             <h2>{level[0]}</h2><p className="resultCopy">{level[1]}</p>
-            <img className="resultImage" src={level[2]} alt={`${level[0]} 测试结果配图`} />
+            <img className="resultImage" src={`${BASE_PATH}${level[2]}`} alt={`${level[0]} 测试结果配图`} />
             <div className="equation"><div><span>基础性缩力</span><b>20</b></div><i>+</i><div><span>外观</span><b>{result.appearance}</b></div><i>+</i><div><span>行为</span><b>{result.behavior}</b></div><i>−</i><div className="good"><span>内涵</span><b>{result.innerOffset}</b></div><i>−</i><div className="good"><span>改善</span><b>{result.actionOffset}</b></div></div>
             <div className="finalShrink">对冲后性缩力 <strong>{result.shrink}</strong> · 综合分 <strong>{result.score}</strong></div>
             <button className="primary full" onClick={() => { setStep(0); setAnswers(defaults); setBehaviors([]); setCharacter([]); setImprovements([]); }}>重新评估</button>

@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "性缩力实验室｜娱乐性吸引力自测",
   description: "综合生活方式与相处体验，生成可解释的娱乐性性缩力分数。",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "./favicon.svg",
+    shortcut: "./favicon.svg",
   },
 };
 
