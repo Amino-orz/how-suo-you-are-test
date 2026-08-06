@@ -32,19 +32,20 @@ export const appearanceGroups = [
     key: "proportion",
     title: "4. 身材比例",
     options: [
-      { value: "a", label: "A. 五五开", shrink: 1 },
-      { value: "b", label: "B. 下半身比上半身短", shrink: 8 },
-      { value: "c", label: "C. 腿比上半身长", shrink: -2 },
+      { value: "a", label: "A. 五五开身材", shrink: 1 },
+      { value: "b", label: "B. 上半身长", shrink: 8 },
+      { value: "c", label: "C. 腿长", shrink: -2 },
     ],
   },
   {
     key: "face",
     title: "5. 颜值轮廓",
     options: [
-      { value: "a", label: "A. 很明显嘴凸 / 凹陷", shrink: 8 },
-      { value: "b", label: "B. 有一点嘴凸 / 凹陷", shrink: 2 },
-      { value: "c", label: "C. 正常", shrink: -1 },
-      { value: "d", label: "D. 霸道总裁雕塑般的面庞.jpg", shrink: -3 },
+      { value: "a", label: "A. 歪瓜裂枣典型样本", shrink: 11 },
+      { value: "b", label: "B. 很明显嘴凸 / 凹陷", shrink: 8 },
+      { value: "c", label: "C. 有一点嘴凸 / 凹陷", shrink: 2 },
+      { value: "d", label: "D. 正常", shrink: -1 },
+      { value: "e", label: "E. 霸道总裁雕塑般的面庞.jpg", shrink: -3 },
     ],
   },
   {
@@ -52,8 +53,8 @@ export const appearanceGroups = [
     title: "6. 体态",
     options: [
       { value: "a", label: "A. 请去体态康复中心看看", shrink: 8 },
-      { value: "b", label: "B. 有一些些常见体态问题", shrink: 3 },
-      { value: "c", label: "C. 总体来说很正常", shrink: -1 },
+      { value: "b", label: "B. 有一些些常见体态问题，无法完全忽略", shrink: 3 },
+      { value: "c", label: "C. 总体正常", shrink: 0 },
       { value: "d", label: "D. 挺拔有气质", shrink: -2 },
       { value: "e", label: "E. 男模", shrink: -3 },
     ],
@@ -64,8 +65,9 @@ export const appearanceGroups = [
     options: [
       { value: "a", label: "A. 大庆油田+黑头饱满圆润 / 痘痘很多", shrink: 8 },
       { value: "b", label: "B. 痘痘 / 毛孔明显看起来完全没有管理过", shrink: 6 },
-      { value: "c", label: "C. 正常", shrink: 0 },
-      { value: "d", label: "D. 感觉皮肤挺好很干净", shrink: -1 },
+      { value: "c", label: "C. 正常，没觉得有什么特别", shrink: 0 },
+      { value: "d", label: "D. 比同龄人好点", shrink: -1 },
+      { value: "e", label: "E. 看起来专门护理过，平滑干净", shrink: -2 },
     ],
   },
 ] as const;
