@@ -35,8 +35,8 @@ export const appearanceGroups = [
     title: "4. 腹部状态",
     options: [
       { value: "a", label: "A. 标准中老登同款肚腩", shrink: 10 },
-      { value: "b", label: "B. 轻微肚腩", shrink: 6 },
-      { value: "c", label: "C. 一整块软软的腹肌（其实就是没有的意思）", shrink: 2 },
+      { value: "b", label: "B. 轻微肚腩", shrink: 8 },
+      { value: "c", label: "C. 一整块软软的腹肌（其实就是没有的意思）", shrink: 3 },
       { value: "d", label: "D. 正常人类身材", shrink: 0 },
       { value: "e", label: "E. 有明显练过的肌肉线条", shrink: -3 },
     ],
@@ -56,7 +56,7 @@ export const appearanceGroups = [
     options: [
       { value: "a", label: "A. 歪瓜裂枣典型样本", shrink: 11 },
       { value: "b", label: "B. 很明显嘴凸 / 凹陷", shrink: 8 },
-      { value: "c", label: "C. 有一点嘴凸 / 凹陷", shrink: 2 },
+      { value: "c", label: "C. 有一点嘴凸 / 凹陷", shrink: 4 },
       { value: "d", label: "D. 正常", shrink: -1 },
       { value: "e", label: "E. 霸道总裁雕塑般的面庞.jpg", shrink: -3 },
     ],
@@ -68,8 +68,8 @@ export const appearanceGroups = [
       { value: "a", label: "A. 请去体态康复中心看看", shrink: 8 },
       { value: "b", label: "B. 有一些些常见体态问题，无法完全忽略", shrink: 3 },
       { value: "c", label: "C. 总体正常", shrink: 0 },
-      { value: "d", label: "D. 挺拔有气质", shrink: -2 },
-      { value: "e", label: "E. 男模", shrink: -3 },
+      { value: "d", label: "D. 挺拔有气质", shrink: -3 },
+      { value: "e", label: "E. 男模", shrink: -4 },
     ],
   },
   {
@@ -94,10 +94,10 @@ export const physicalBehaviorOptions: CheckOption[] = [
 ];
 
 export const interactionBehaviorOptions: CheckOption[] = [
-  { value: "greasy", label: "说话方式油腻", points: 2 },
-  { value: "showoff", label: "爱装逼，炫耀式聊天", points: 2.5 },
-  { value: "judge", label: "爱随意点评女性 / 物化女性", points: 1 },
-  { value: "vulgar", label: "爱开低俗玩笑", points: 2.5 },
+  { value: "greasy", label: "说话方式油腻", points: 3 },
+  { value: "showoff", label: "爱装逼，炫耀式聊天", points: 4 },
+  { value: "judge", label: "爱随意点评女性 / 物化女性", points: 4 },
+  { value: "vulgar", label: "爱开低俗玩笑", points: 3 },
   { value: "preachy", label: "爱说教，爹味很重", points: 5 },
   { value: "insincere", label: "不真诚，很虚伪", points: 5 },
   { value: "joke-killer", label: "接话黑洞：别人抛梗他讲道理", points: 3 },
@@ -107,12 +107,12 @@ export const interactionBehaviorOptions: CheckOption[] = [
 ];
 
 export const coreBehaviorOptions: CheckOption[] = [
-  { value: "stingy", label: "抠门（e.g. AA 到小数点后 / 送礼只送 pxx）", points: 4 },
-  { value: "fragile", label: "玻璃心：被轻微反驳就破防", points: 3 },
+  { value: "stingy", label: "抠门（e.g. AA 到小数点后 / 送礼只送 pxx）", points: 5 },
+  { value: "fragile", label: "玻璃心：被轻微反驳就破防", points: 4 },
   { value: "man-child", label: "巨婴感：遇事甩锅 / 等别人兜底", points: 5 },
-  { value: "check-in", label: "完全不熟就开始查岗", points: 3 },
+  { value: "check-in", label: "完全不熟就开始查岗", points: 4 },
   { value: "cold-water", label: "喜欢泼冷水", points: 4 },
-  { value: "no-hobbies", label: "纯躺平，完全没爱好", points: 2 },
+  { value: "no-hobbies", label: "纯躺平，没个人爱好", points: 2 },
 ];
 
 export const intellectOptions: CheckOption[] = [
@@ -123,7 +123,7 @@ export const intellectOptions: CheckOption[] = [
 
 export const emotionOptions: CheckOption[] = [
   { value: "stable", label: "情绪稳定", points: 4 },
-  { value: "sincere", label: "真诚", points: 3 },
+  { value: "sincere", label: "真诚", points: 4 },
 ];
 
 export const characterBehaviorOptions: CheckOption[] = [
