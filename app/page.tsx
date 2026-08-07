@@ -111,17 +111,24 @@ export default function Home() {
     const appearance = appearanceRows.reduce((sum, row) => sum + row.value, 0);
     const physical = sumChecked(physicalBehaviors, physicalBehaviorOptions);
     const interaction = sumChecked(interactionBehaviors, interactionOptions);
+    const interactionSelectedCount = interactionOptions.filter(option => interactionBehaviors.includes(option.value)).length;
+    const interactionPenalty = interactionSelectedCount >= 4
+      ? 12
+      : interactionSelectedCount >= 3 && interactionBehaviors.includes("vulgar") ? 10 : 0;
     const core = sumChecked(coreBehaviors, coreBehaviorOptions);
     const stingyBonus = answers.income !== "low" && coreBehaviors.includes("stingy") ? 20 : 0;
-    const behavior = physical + interaction + core + stingyBonus;
+    const behavior = physical + interaction + core + stingyBonus + interactionPenalty;
     const allCharacterOptions = [...intellectOptions, ...emotionOptions, ...characterBehaviorOptions];
     const innerOffset = sumChecked(character, allCharacterOptions);
+    const intellectAndBehaviorCount = [...intellectOptions, ...characterBehaviorOptions]
+      .filter(option => character.includes(option.value)).length;
+    const severeTendency = interactionPenalty > 0 && intellectAndBehaviorCount >= 4;
     const managementOffset = selfManagementOptions
       .filter(option => improvements.includes(option.value))
       .reduce((sum, option) => sum + (option.value === "fitness" && !bmi.normal ? 0 : option.points), 0);
     const actionOffset = managementOffset + sumChecked(improvements, otherImprovementOptions);
     const shrink = Math.max(0, Math.min(100, Math.round(20 + hard + appearance + behavior - innerOffset - actionOffset)));
-    return { bmi, hard, appearance, physical, interaction, core, stingyBonus, behavior, innerOffset, actionOffset, shrink, score: 100 - shrink };
+    return { bmi, hard, appearance, physical, interaction, core, stingyBonus, interactionPenalty, severeTendency, behavior, innerOffset, actionOffset, shrink, score: 100 - shrink };
   }, [height, weight, answers, physicalBehaviors, interactionBehaviors, interactionOptions, coreBehaviors, character, improvements]);
 
   const level = result.score >= 90 ? ["不缩反张", "恭喜您！属于有性张力的稀有极品，男模都没你嫩", "/results/not-shrinking.jpg"]
@@ -217,7 +224,7 @@ export default function Home() {
 
           {step === 8 && <div className="panel result">
             <p className="sectionNo">综合吸引力</p><div className="scoreRing" style={{ "--score": `${result.score * 3.6}deg` } as React.CSSProperties}><div><strong>{result.score}</strong><span>/100</span></div></div>
-            <h2>{level[0]}</h2><p className="resultCopy">{level[1]}</p>
+            <h2>{level[0]}</h2><p className="resultCopy">{level[1]}{result.interactionPenalty > 0 && " 开口即下头，最该被 mute 的人类，人品底色侧漏"}{result.severeTendency && " 渣男倾向严重⚠️"}</p>
             <img className="resultImage" src={`${BASE_PATH}${level[2]}`} alt={`${level[0]} 测试结果配图`} />
             <div className="equation"><div><span>基础</span><b>20</b></div><i>+</i><div><span>硬性</span><b>{result.hard}</b></div><i>+</i><div><span>外观</span><b>{result.appearance}</b></div><i>+</i><div><span>行为</span><b>{result.behavior}</b></div><i>−</i><div className="good"><span>内涵</span><b>{result.innerOffset}</b></div><i>−</i><div className="good"><span>改善</span><b>{result.actionOffset}</b></div></div>
             <div className="finalShrink">对冲后性缩力 <strong>{result.shrink}</strong> · 综合分 <strong>{result.score}</strong></div>
