@@ -157,7 +157,7 @@ export default function Home() {
         <section className="intro">
           <p className="eyebrow">HOW SUO ARE YOU?</p>
           <h1>人类缩力观测<br/><em>一键测出你的下头指数</em></h1>
-          <p className="lead">分开评估硬性条件、外观、行为和两类对冲项，不把任何单项特征当成对人的定论。</p>
+          <p className="lead">分开评估硬性条件、外观、行为和两类性缩力对冲项。</p>
           <div className="formula"><b>综合分 = 100 − 对冲后性缩力</b><span>分数越高，综合吸引力越强</span></div>
         </section>
         <section className="card">
@@ -208,7 +208,7 @@ export default function Home() {
           </div>}
 
           {step === 6 && <div className="panel compact">
-            <p className="sectionNo">07 / 内涵对冲</p><h2>风评逆转的机会来了</h2><p className="helper">可多选。</p>
+            <p className="sectionNo">07 / 内涵对冲</p><h2>风评逆转的机会</h2><p className="helper">可多选。</p>
             <CheckGroup title="1. 脑子好不好使" note="聊天质量与知识魅力" options={intellectOptions} selected={character} onToggle={value => toggle(value, character, setCharacter)}/>
             <CheckGroup title="2. 情绪" note="让人感到安心的心理质地" options={emotionOptions} selected={character} onToggle={value => toggle(value, character, setCharacter)}/>
             <CheckGroup title="3. 行为" note="在真实相处中持续加分" options={characterBehaviorOptions} selected={character} onToggle={value => toggle(value, character, setCharacter)}/>
@@ -233,7 +233,7 @@ export default function Home() {
           </div>}
         </section>
       </div>
-      <footer>（叠甲）仅用于参考 · 外观性缩力不等于个人价值 · 请结合真实相处体验</footer>
+      <footer>（叠甲）仅用于参考 · 外观性缩力不等于个人价值 · 请结合真实相处体验进行评价</footer>
     </main>
   );
 }
