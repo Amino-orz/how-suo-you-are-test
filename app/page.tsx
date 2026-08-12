@@ -119,14 +119,18 @@ export default function Home() {
     const stingyBonus = answers.income !== "low" && coreBehaviors.includes("stingy") ? 20 : 0;
     const behavior = physical + interaction + core + stingyBonus + interactionPenalty;
     const allCharacterOptions = [...intellectOptions, ...emotionOptions, ...characterBehaviorOptions];
-    const innerOffset = sumChecked(character, allCharacterOptions);
-    const intellectAndBehaviorCount = [...intellectOptions, ...characterBehaviorOptions]
-      .filter(option => character.includes(option.value)).length;
-    const severeTendency = interactionPenalty > 0 && intellectAndBehaviorCount >= 4;
-    const managementOffset = selfManagementOptions
-      .filter(option => improvements.includes(option.value))
+    const rawInnerOffset = sumChecked(character, allCharacterOptions);
+    const validImprovementOptions = selfManagementOptions
+      .filter(option => improvements.includes(option.value) && (option.value !== "fitness" || bmi.normal));
+    const managementOffset = validImprovementOptions
       .reduce((sum, option) => sum + (option.value === "fitness" && !bmi.normal ? 0 : option.points), 0);
-    const actionOffset = managementOffset + sumChecked(improvements, otherImprovementOptions);
+    const rawActionOffset = managementOffset + sumChecked(improvements, otherImprovementOptions);
+    const positiveItemCount = character.length
+      + validImprovementOptions.length
+      + otherImprovementOptions.filter(option => improvements.includes(option.value)).length;
+    const severeTendency = interactionPenalty > 0 && positiveItemCount >= 3;
+    const innerOffset = severeTendency ? Math.min(rawInnerOffset, 12) : rawInnerOffset;
+    const actionOffset = severeTendency ? Math.min(rawActionOffset, 12 - innerOffset) : rawActionOffset;
     const shrink = Math.max(0, Math.min(100, Math.round(20 + hard + appearance + behavior - innerOffset - actionOffset)));
     return { bmi, hard, appearance, physical, interaction, core, stingyBonus, interactionPenalty, severeTendency, behavior, innerOffset, actionOffset, shrink, score: 100 - shrink };
   }, [height, weight, answers, physicalBehaviors, interactionBehaviors, interactionOptions, coreBehaviors, character, improvements]);
@@ -157,15 +161,15 @@ export default function Home() {
         <section className="intro">
           <p className="eyebrow">HOW SUO ARE YOU?</p>
           <h1>人类缩力观测<br/><em>一键测出你的下头指数</em></h1>
-          <p className="lead">分开评估硬性条件、外观、行为和两类对冲项，不把任何单项特征当成对人的定论。</p>
-          <div className="formula"><b>综合分 = 100 − 对冲后性缩力</b><span>分数越高，综合吸引力越强</span></div>
+          <p className="lead">分开评估硬性条件、外观、行为和两类对冲项，平等物化所有人😊。</p>
+          <div className="formula"><b>综合分 = 100 − 对冲后性缩力</b><span>分数越高，综合吸引力越强</span><span>适用范围：你想评价的男性对象 （本测试主观性较强）</span></div>
         </section>
         <section className="card">
           <div className="progressRow"><span>{step === LAST_STEP ? "评估结果" : `第 ${step + 1} 页 / 共 ${LAST_STEP} 页`}</span><span>{progress}%</span></div>
           <div className="progress"><i style={{ width: `${progress}%` }} /></div>
 
           {step === 0 && <div className="panel">
-            <p className="sectionNo">01 / 身材数据</p><h2>计算 BMI</h2><p className="helper">BMI 仅用衡量于身材维度，没别的意思。</p>
+            <p className="sectionNo">01 / 身材数据</p><h2>计算 BMI</h2><p className="helper">BMI 仅用衡量于身材维度，没别的意思，不收集个人数据哈</p>
             <div className="numberGrid two">
               <label className="numberField"><span>身高</span><div><input type="number" min="140" max="220" value={height} onChange={event => setHeight(Number(event.target.value))}/><b>cm</b></div></label>
               <label className="numberField"><span>体重</span><div><input type="number" min="35" max="180" value={weight} onChange={event => setWeight(Number(event.target.value))}/><b>kg</b></div></label>
@@ -224,11 +228,10 @@ export default function Home() {
 
           {step === 8 && <div className="panel result">
             <p className="sectionNo">综合吸引力</p><div className="scoreRing" style={{ "--score": `${result.score * 3.6}deg` } as React.CSSProperties}><div><strong>{result.score}</strong><span>/100</span></div></div>
-            <h2>{level[0]}</h2><p className="resultCopy">{level[1]}{result.interactionPenalty > 0 && " 开口即下头，最该被 mute 的人类，人品底色侧漏"}{result.severeTendency && " 渣男倾向严重⚠️"}</p>
+            <h2>{level[0]}</h2><p className="resultCopy">{level[1]}{result.interactionPenalty > 0 && " 开口即下头，最该被 mute 的人类，人品底色侧漏"}{result.severeTendency && " 渣男倾向严重⚠️"}{result.stingyBonus > 0 && " 白嫖引力无穷大"}</p>
             <img className="resultImage" src={`${BASE_PATH}${level[2]}`} alt={`${level[0]} 测试结果配图`} />
             <div className="equation"><div><span>基础</span><b>20</b></div><i>+</i><div><span>硬性</span><b>{result.hard}</b></div><i>+</i><div><span>外观</span><b>{result.appearance}</b></div><i>+</i><div><span>行为</span><b>{result.behavior}</b></div><i>−</i><div className="good"><span>内涵</span><b>{result.innerOffset}</b></div><i>−</i><div className="good"><span>改善</span><b>{result.actionOffset}</b></div></div>
             <div className="finalShrink">对冲后性缩力 <strong>{result.shrink}</strong> · 综合分 <strong>{result.score}</strong></div>
-            {result.stingyBonus > 0 && <p className="resultCopy stingyVerdict">白嫖引力无穷大</p>}
             <button className="primary full" onClick={reset}>重新评估</button>
           </div>}
         </section>
