@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "性缩力实验室｜娱乐性吸引力自测",
-  description: "综合生活方式与相处体验，生成可解释的娱乐性性缩力分数。",
+  description: "综合生活方式与相处体验，生成可解释的性缩力分数，并生成最终综合评分。",
   icons: {
     icon: "./favicon.svg",
     shortcut: "./favicon.svg",
